@@ -1,0 +1,6 @@
+pandas>=1.5.3,<2.0
+scipy>=1.15.2,<1.16
+numpy>=1.26.4,<2.0
+requests>=2.32.3
+nfl-data-py>=0.3.3
+nba-api>=1.7.0

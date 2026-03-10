@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cross-Sport Conspiracy Almanac</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Static Weekly Sports Analytics</p>
+        <h1>The Cross-Sport Conspiracy Almanac</h1>
+        <p class="hero-text">
+          Weekly absurdities from NFL, NBA, and NHL play: the strongest correlations between completely unrelated team metrics across the live data sources.
+        </p>
+      </div>
+      <div class="hero-stats" id="hero-stats">
+        <div class="stat-chip">
+          <span class="stat-label">Window</span>
+          <strong id="window-range">Loading</strong>
+        </div>
+        <div class="stat-chip">
+          <span class="stat-label">Pairs Scanned</span>
+          <strong id="pairs-scanned">0</strong>
+        </div>
+        <div class="stat-chip">
+          <span class="stat-label">Strong Matches</span>
+          <strong id="pairs-returned">0</strong>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="about-panel">
+        <div class="section-heading">
+          <p class="eyebrow">About The Page</p>
+          <h2>What you are looking at</h2>
+        </div>
+        <p class="hero-text about-text">
+          This dashboard compares weekly NFL, NBA, and NHL team totals, normalizes each metric as a z-score, and only keeps the strongest cross-sport Pearson correlations. The lines show normalized trends, while the tooltips preserve the raw underlying values so the comparison stays legible and ridiculous at the same time.
+        </p>
+      </section>
+
+      <section class="headline-panel">
+        <div class="section-heading">
+          <p class="eyebrow">Headline Matchup</p>
+          <h2 id="headline-title">Waiting for this week’s nonsense</h2>
+        </div>
+        <div class="headline-grid">
+          <div class="headline-copy">
+            <p id="headline-summary">The pipeline will populate this section after the first data refresh.</p>
+            <div class="headline-metrics">
+              <div>
+                <span class="metric-label">Correlation</span>
+                <strong id="headline-r-score">--</strong>
+              </div>
+              <div>
+                <span class="metric-label">Overlap</span>
+                <strong id="headline-sample">--</strong>
+              </div>
+              <div>
+                <span class="metric-label">Generated</span>
+                <strong id="generated-at">--</strong>
+              </div>
+            </div>
+          </div>
+          <div class="headline-chart-wrap">
+            <canvas id="headline-chart" aria-label="Headline correlation chart"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <section class="matchups-panel">
+        <div class="section-heading">
+          <p class="eyebrow">Correlation Board</p>
+          <h2>Top cross-sport alignments</h2>
+        </div>
+        <div id="matchups-grid" class="matchups-grid"></div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

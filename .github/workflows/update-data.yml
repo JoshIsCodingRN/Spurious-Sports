@@ -1,0 +1,49 @@
+name: Refresh Correlation Feed
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 14 * * 2"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-correlation-feed
+  cancel-in-progress: true
+
+jobs:
+  refresh-data:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Generate weekly correlation feed
+        run: python generate_correlations.py --leagues nfl,nba,nhl
+
+      - name: Commit refreshed feed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/sports_correlations.json
+          if git diff --cached --quiet; then
+            echo "No data changes to commit"
+            exit 0
+          fi
+          git commit -m "chore: refresh sports correlation feed"
+          git push
