@@ -5,9 +5,9 @@ from datetime import date, timedelta
 from pathlib import Path
 
 REQUEST_DELAY_SECONDS = 2
-CORRELATION_THRESHOLD = 0.85
+CORRELATION_THRESHOLD = 0.70
 MIN_OVERLAP_WEEKS = 6
-DEFAULT_LOOKBACK_DAYS = 400
+DEFAULT_LOOKBACK_DAYS = 800
 MAX_CORRELATIONS = 10
 PAGES_DATA_PATH = Path("docs/data/sports_correlations.json")
 
