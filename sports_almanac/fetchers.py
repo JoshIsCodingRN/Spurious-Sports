@@ -217,8 +217,13 @@ class NHLFetcher:
         away_stats: dict = {"date": pd.Timestamp(game_date)}
         home_stats: dict = {"date": pd.Timestamp(game_date)}
 
-        away_stats["goals"] = float(data.get("awayTeam", {}).get("score", 0))
-        home_stats["goals"] = float(data.get("homeTeam", {}).get("score", 0))
+        try:
+            away_stats["goals"] = float(data.get("awayTeam", {}).get("score", 0))
+            home_stats["goals"] = float(data.get("homeTeam", {}).get("score", 0))
+        except (ValueError, TypeError):
+            LOGGER.warning("NHL game %s: unable to parse goal scores", game_id)
+            away_stats["goals"] = 0.0
+            home_stats["goals"] = 0.0
 
         for stat in data.get("summary", {}).get("teamGameStats", []):
             category = stat.get("category", "")
@@ -228,7 +233,7 @@ class NHLFetcher:
                     away_stats[metric] = float(stat.get("awayValue", 0))
                     home_stats[metric] = float(stat.get("homeValue", 0))
                 except (ValueError, TypeError):
-                    pass
+                    LOGGER.warning("NHL game %s: unable to parse %s values", game_id, category)
 
         return [away_stats, home_stats]
 
