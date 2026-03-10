@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-03-10T05:45:17Z",
+  "generated_at": "2026-03-10T16:19:42Z",
   "window": {
-    "start_date": "2023-12-31",
+    "start_date": "2021-03-11",
     "end_date": "2026-03-10"
   },
   "headline_matchup": null,
@@ -13,7 +13,7 @@
       "nhl"
     ],
     "correlation_threshold": 0.7,
-    "evaluated_pairs": 35,
+    "evaluated_pairs": 7,
     "returned_pairs": 0,
     "minimum_overlap_weeks": 6
   }
