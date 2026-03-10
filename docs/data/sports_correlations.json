@@ -12,7 +12,7 @@
       "nba",
       "nhl"
     ],
-    "correlation_threshold": 0.85,
+    "correlation_threshold": 0.70,
     "evaluated_pairs": 35,
     "returned_pairs": 0,
     "minimum_overlap_weeks": 6

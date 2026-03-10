@@ -96,7 +96,7 @@ class NBAFetcher:
         frames: list[pd.DataFrame] = []
         for season in _season_strings(start_date, end_date):
             try:
-                endpoint = _rate_limited_call(LeagueGameFinder, league_id_nullable="00", season_nullable=season)
+                endpoint = _rate_limited_call(LeagueGameFinder, league_id_nullable="00", season_nullable=season, timeout=30)
                 season_games = endpoint.get_data_frames()[0]
             except Exception as exc:  # pragma: no cover - external API instability
                 LOGGER.warning("NBA fetch failed for %s: %s", season, exc)
